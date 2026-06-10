@@ -14,7 +14,7 @@ The `sipnet.out` file contains a time series of state variables and fluxes from 
 | 1  |                             | year                | Year of start of timestep                                                  | (integer)     |
 | 2  |                             | day                 | Day-of-year of start of timestep                                           | (integer)     |
 | 3  |                             | time                | Hour-of-day (fractional) at start of timestep                              | hours         |
-| 4  |                             | plantWoodC          | Woody plant carbon                                                         | g C m$^{-2}$  |
+| 4  |                             | plantWoodC          | Total wood carbon ($C_{\text{wood}} + C_{\text{wood,accounting}}$) [^2]   | g C m$^{-2}$  |
 | 5  |                             | plantLeafC          | Leaf carbon                                                                | g C m$^{-2}$  |
 | 6  |                             | woodCreation        | Carbon allocated to wood during timestep                                   | g C m$^{-2}$  |
 | 7  |                             | soil                | (Single) soil organic carbon (or mineral soil C pool)                      | g C m$^{-2}$  |
@@ -44,12 +44,11 @@ The `sipnet.out` file contains a time series of state variables and fluxes from 
 |    |                             | nFixation           | Nitrogen demand met by fixation                                            | g N m$^{-2}$  |
 |    |                             | nUptake             | Nitrogen demand met by uptake from soil                                    | g N m$^{-2}$  |
 |    |                             | ch4                 | Methane production                                                         | g C m$^{-2}$  |
-|    | $C_{\text{wood,accounting}}$ | plantWoodCAccountingDelta | Wood carbon accounting delta (N-lag term; not N-coupled structural wood) | g C m$^{-2}$  |
-
-Note: this column was previously named `nppStorage`.
 
 [^1]: Mean soilWetnessFrac (ratio of soil water / water holding capacity) calculated as average between previous and current time step. Reported for diagnostics only.
 Internal moisture dependency functions use instantaneous $W_{soil}/W_{WHC}$ (not this average), and clip that ratio to [0,1] where those dependency functions are defined.
+
+[^2]: `plantWoodC` reports structural wood carbon plus the N-lag accounting term ($C_{\text{wood,accounting}}$). The N-coupled structural pool alone is not written as a separate output column.
 
 An example output file can be found in [tests/smoke/sipnet.out](https://github.com/PecanProject/sipnet/blob/master/tests/smoke/niwot/sipnet.out).
 

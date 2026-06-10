@@ -167,7 +167,7 @@ the current timestep's net primary production (adjusted GPP - autotrophic respir
 term, and all allocations from the averaged NPP are deducted from that term.
 
 Starting in SIPNET v2.1, to support mass balance tracking, this term is explicitly tracked as
-$C_{\text{wood,accounting}}$ (`plantWoodCAccountingDelta`), which is initialized to zero. We can represent this
+$C_{\text{wood,accounting}}$, which is initialized to zero. We can represent this
 accounting delta as:
 
 \begin{equation}
